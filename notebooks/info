@@ -1,0 +1,3 @@
+In AW_prototype_v1.ipynb sind ein paar Klassen für das Modell; einiges funktioniert bereits, andere Sachen noch nicht bzw müssen geändert werden.
+Grundsätzlich handelt es sich noch um einen sehr rohen Prototyp, teilweise sind Klassen allerdings bereits verwendbar.
+! Wichtig: pre-trained word2vec embeddings sind zu groß und konnten nicht hochgeladen werden. Ohne embeddings funktioniert das Ganze nicht.
