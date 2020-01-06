@@ -17,13 +17,13 @@ Da die benötigte Software offensichtlich aus mehreren Modulen besteht, sollten 
 
 #### 2. Logik:
 * Kategorien zum Anzeigen bestimmen, am einfachsten wäre die Kategorien aus rss feeds zu nehmen - dann erfordert es keine weitere Sortierung
-* Ein klassifizierendes System bauen, das auf Interaktionen des Users reagiert und dementsprechend die zu erwartende Relevanz von Artikeln berechnet. Z.B., ein Ansatz basierend auf Distanzen: Die Artikel, die User gelesen hat, bilden lokale Zentren von seinen Interessen; Artikel in einem bestimmten Radius vom Zentrum werden höher gewichtet als Artikel außerhalb des Interessenradius. Gespeichert wird allerdings aufgrund der Größe nicht das ganze Model wie bei KNN, sondern nur die Zentren, Radien, Gewichtungen des Raumes und einige "frische" Artikel. In der personalisierten Kategorie bekommt der User in erster Linie die hochgewichteten Artikel angeboten.
-* Artikel aus dem Pool mit der den Gewichtungen entsprechenden Häufigkeit wählen. *Wichtig: Auch irrelevante Artikel sollten ab und zu angezeigt werden*
+* Ein klassifizierendes System bauen, das auf Interaktionen des Users reagiert und dementsprechend die zu erwartende Relevanz von Artikeln berechnet. 
+* _Vorgehensweise derzeit im Prototyp_: Artikel, die der Benutzer bereits gelesen hat, müssen für das Clustering verwendet werden. Auf den sich daraus ergebenden Klassenlabels wird ein klassifizierender Algorithmus trainiert. Dieser wiederum wird verwendet, um neue Nachrichten zu klassifizieren. Basierend auf den Klassenlabels und Klassengewichtungen sollten die neuen Nachrichten dem Benutzer in der "personalisierten" Kategorie angezeigt werden. Wenn eine genügende Anzahl an neuen Artikeln von dem Benutzer gelesen wurde -> update clusters, classifier.
+
 ##### Classificator - Aufgaben:
-* Anhand von vorhandenen Informationen über Artikel aus rss feeds geeignete Features fürs Modell finden. Möglicher Ansatz: Term-Doc-Matrix -> Metrik wie TF-IDF, PMI, PPMI,... -> Dimensionality reduction, z.B. LSA -> Distanzmatrix (wie KNN)
-* Am Anfang sind alle Artikel (= alle Teile des Raumes) gleich gewichtet. Wenn der User einen Artikel zum Lesen wählt, sollte entsprechender Teil des "Artikelraumes" leicht höher gewichtet werden; sollte das Interesse aufrecht bleiben (der User bevorzugt auch andere Artikel aus der Umgebung), wird die Gewichtung signifikanter erhöht. *Wichtig: sinnvollen Radius bestimmen*
-* Zu berücksichtigen: Bereits gelesene Artikel nicht wieder anbieten (aber evtl in der zusätzlichen Kategorie speichern)
-* Das Modell soll gespeichert werden: Lage der Interessenzentren, entsprechende Radien und Gewichtungen, sodass die Gewichtung des jeweiligen Teilraums wiederhergestellt wird und neue Artikel entsprechend behandelt werden.
+* Vektorrepräsentationen der Texte und Distanzen _(derzeit im Prototyp: Pre-trained Word2Vec -> L2 -> cosine distance; theoretisch auch möglich: Word2Vec -> WM distance ABER in diesem Fall ist mir momentan die Vorgehensweise bei der Klassifizierung unklar)_
+* Passendes Modell für das Clustering (erforderlich: Metrik mehr oder weniger frei wählbar und/oder das Modell kann mit Distanzmatrix arbeiten; wünschenswert: "outlier"-Cluster) 
+* und für die Klassifizierung ("outlier"-Klasse erforderlich, wahrscheinlich RadiusNeighborsClassifier denkbar - oder auch custom) 
 
 #### 3. User Interface:
 * Passendes high-level package für GUI in Jupyter Notebook finden
