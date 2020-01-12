@@ -1,3 +1,9 @@
+In AW_Prototyp_v2.ipynb befindet sich ein halbwegs funktionierender Prototyp des Systems. 
+Mit while-Schleife werden teilweise die Interaktionen des Benutzers simuliert.
+Riesiges Pre-trained Word2Vec Modell zum Ausprobieren könnt ihr gerne hier von meinem Google Drive herunterladen:
+https://drive.google.com/open?id=1Eipwn1kOVegCsnJEP2ebr6e4V_pUYjn7
+
+
 In AW_prototype_v1.ipynb sind ein paar Klassen für das Modell; einiges funktioniert bereits, andere Sachen noch nicht bzw müssen geändert werden.
 Grundsätzlich handelt es sich noch um einen sehr rohen Prototyp, teilweise sind Klassen allerdings bereits verwendbar.
 ! Wichtig: pre-trained word2vec embeddings sind zu groß und konnten nicht hochgeladen werden. Ohne embeddings funktioniert das Ganze nicht.
