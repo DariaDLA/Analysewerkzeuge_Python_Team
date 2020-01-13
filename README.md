@@ -50,7 +50,7 @@ _Datenformat_
 
 _Interaktionen_
 
-0. Die **Applikation** wird **gestartet**:
+0. Die **Applikation** wird **gestartet**:  
     _Das System versucht, Daten und Modelle einzulesen, wenn OK -> das existierende System wird gestartet, wenn etwas fehlt -> ein neues wird initialisiert._
     - Input System -> GUI: Zwei DataFrames - DataFrame mit pre-definierten Kategorien und DataFrame mit Nachrichten für die personalisierte Kategorie, bereitsgestellte Nachrichten-Items müssen nun angezeigt werden
 
