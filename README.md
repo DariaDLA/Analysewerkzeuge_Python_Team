@@ -30,4 +30,43 @@ Da die benötigte Software offensichtlich aus mehreren Modulen besteht, sollten 
 * Interface skizzieren, Funktionalität festlegen
 * Interface bauen
 
+#### GUI - Funktionalität und Interaktionen:
+* Es werden Nachrichten-Items in verschiedenen **Kategorien (Sektionen)** angezeigt
+* Jedes **Nachricht-Item** besteht aus Titel, Summary, Link, Datum und Uhrzeit 
+* Jedes Nachricht-Item besitzt außerdem einen **ID**, der zwar dem User nicht angezeigt wird aber für Kommunikation mit dem System benötigt wird
+* **Update-Button**, um Nachrichten erneut herunterzuladen
+* _(optional)_ **Show more-Button** in jeder Kategorie
+* _(optional)_ **Show similar-Button**, um ähnliche Nachrichten zu finden und zu zeigen
+* _(SEHR optional)_ **User Profile** - die Möglichkeit, das Benutzerprofil zu wählen
+
+_Datenformat_
+
+* Nachrichten-Items werden als pandas-DataFrame Objekte bereitsgestellt
+* DataFrame enthält u.a. Spalten: `title`, `summary`, `link`, `datetime` und `ID`
+* `ID` ist derzeit ein hash-Code für jede Nachricht und sollte nicht angezeigt sondern nur für die innere Kommunikation mit dem System verwendet werden
+* Nachrichten aus den in rss-feeds pre-definierten Kategorien (wie Politik, Kultur, ...) werden gesamt als DataFrame mit entsprechender `category`-Spalte bereitgestellt
+* Nachrichten aus der personalisierten Kategorie ("interesting for you/ based on recent viewed/...") werden im separaten DataFrame bereitgestellt
+* DataFrames können auch **leer sein** bzw. einige Kategorien können nicht präsent sein (keine Einträge)
+
+_Interaktionen_
+
+0. Die **Applikation** wird **gestartet**:
+    - Das System versucht, Daten und Modelle einzulesen, wenn OK -> das existierende System wird gestartet, wenn etwas fehlt -> ein neues wird initialisiert. 
+    - Input System -> GUI: Zwei DataFrames - DataFrame mit pre-definierten Kategorien und DataFrame mit Nachrichten für die personalisierte Kategorie, bereitsgestellte Nachrichten-Items müssen nun angezeigt werden
+
+1. Der **Link** zur Nachricht wird **angeklickt**: 
+    - Link wird (z.B. in Browser) geöffnet
+    - Output GUI -> System: Nachricht-ID
+    - Input System -> GUI: Updated DataFrames mit Nachrichten-Items, die nun anstatt "alten" angezeigt werden sollen _(dabei wurde die angeklickte Nachricht als "viewed" wahrgenommen und deshalb entfernt; evtl hat sich das klassifizierende System verändert und andere Nachrichten als "interessante" gewählt)_
+    
+2. **Update-Button** wird **angeklickt**:
+    - Output GUI -> System: Irgendein Identifikator, z.B. string "update", der als entsprechender Befehl erkannt wird und Nachrichten-Update triggert
+    - Input System -> GUI: Zwei DataFrames - DataFrame mit pre-definierten Kategorien und DataFrame mit Nachrichten für die personalisierte Kategorie, bereitsgestellte Nachrichten-Items müssen nun angezeigt werden
+    
+3. **Session** wird **beendet** (**Close-Button** angeklickt):
+    - Output GUI -> System: Entsprechender Identifikator, der als Befehl erkannt wird, dass die Daten und Modelle gespeichert werden müssen
+    - Input System -> GUI: Bestätigung, dass alles notwendige gespeichert wurde oder Fehlermeldung _(die eigentlich irgendwie bearbeitet werden muss aber lass'ma des...)_
+    - Applikation wird geschlossen
+
+
 #### Testen...
