@@ -1,0 +1,13 @@
+DataFrames - Beispiele von Daten, die GUI bekommen und dem Benutzer zeigen soll:
+- "from_rss_categories.csv" : Jeweils 5 Nachrichten *(es müssen nicht unbedingt immer 5 sein!) aus den in rss feeds pre-definierten Kategorien
+- "interesting.csv" : Nachrichten für die personalisierte Kategorie (based on viewed) - genaue Anzahl ist ebenfalls nicht definiert
+
+DataFrames enthalten derzeit mehr Variablen als notwendig 
+(können später noch vor der Ausgabe gefiltert werden, derzeit bitte unnötige Spalten einfach ignorieren)
+
+Relevant sind folgende Spalten:
+- title
+- summary
+- datetime
+- link
+- ID : für Kommunikation mit dem System
