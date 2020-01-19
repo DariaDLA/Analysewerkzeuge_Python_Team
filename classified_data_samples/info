@@ -1,1 +1,9 @@
-Samples von klassifizierten Nachrichten.
+news_sample<..>.xlsx - Samples von klassifizierten Nachrichten.
+news_sample<..>.csv - das gleiche, csv mit ';' als separator
+
+sample_unique_[0-4].csv - bearbeitete Samples, nur unique news
+
+news_vec[0-4] - Vektorrepräsentationen !!! NUR von "interessanten" Nachrichten !!!
+cosine_dist[0-4] - Distanzen !!! NUR von "interessanten" Nachrichten !!!
+
+news_vec[0-4] und cosine_dist[0-4] können mit pickle eingelesen werden.
